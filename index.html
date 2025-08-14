@@ -1,108 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Personal Webpage</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Emre Dinç — Profile</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, #2b5876, #4e4376);
-      color: #fff;
+    :root{
+      --fb-blue:#3b5998;
+      --fb-blue-dark:#2d4373;
+      --fb-link:#2a6edb;
+      --border:#dfe1e6;
+      --text:#1c1e21;
+      --muted:#65676b;
+      --bg:#f0f2f5;
+      --card:#fff;
+      --btn:#e7f3ff;
+      --btn-border:#cfe3ff;
     }
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    .topbar{
+      position:sticky; top:0; z-index:100;
+      background:var(--fb-blue);
+      color:#fff;
+      display:flex; align-items:center; gap:12px;
+      padding:8px 14px;
+      box-shadow:0 1px 0 rgba(0,0,0,.15);
     }
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.85;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s;
-    }
-    nav a:hover {
-      border-color: #ffdd57;
-    }
-    main {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-      background-color: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      backdrop-filter: blur(6px);
-    }
-    section {
-      padding: 2rem;
-    }
-    section h2 {
-      margin-top: 0;
-      color: #ffdd57;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
+    .logo{font-weight:700;font-size:20px;text-transform:lowercase;}
+    .search{flex:1;display:flex;align-items:center;gap:8px;max-width:560px;background:#fff;color:#111;border-radius:2px;padding:6px 8px;}
+    .search input{border:0;outline:0;flex:1;font-size:14px;background:transparent;}
+    .top-actions{display:flex;gap:10px;align-items:center;}
+    .top-actions a{color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:6px 8px;border-radius:2px;}
+    .top-actions a:hover{background:var(--fb-blue-dark);}
+    .container{max-width:980px;margin:14px auto;padding:0 12px;display:grid;grid-template-columns:260px 1fr;gap:14px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:3px;overflow:hidden;}
+    .profile-card .cover{height:120px;background:linear-gradient(135deg,#5b7bd5,#4864b1);}
+    .profile-info{display:flex;gap:12px;padding:12px;border-top:1px solid var(--border);}
+    .avatar{width:72px;height:72px;border-radius:2px;background:#aac1ff;border:1px solid var(--border);flex:0 0 72px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;}
+    .name{font-size:18px;font-weight:700;margin:0}
+    .subtitle{color:var(--muted);margin:2px 0 0;font-size:13px}
+    .menu{border-top:1px solid var(--border);display:flex;}
+    .menu a{flex:1;text-align:center;padding:10px 8px;text-decoration:none;color:var(--fb-blue);font-weight:600;font-size:13px;border-right:1px solid var(--border);}
+    .menu a:last-child{border-right:0}
+    .menu a:hover{background:#f6f7f9}
+    .about{padding:12px;border-top:1px solid var(--border)}
+    .about h3{margin:0 0 8px;font-size:14px}
+    .about ul{list-style:none;margin:0;padding:0}
+    .about li{padding:8px 0;border-top:1px solid var(--border);font-size:13px}
+    .about li:first-child{border-top:0}
+    .about .label{color:var(--muted);display:block;font-size:12px;margin-bottom:2px}
+    .about a{color:var(--fb-link);text-decoration:none}
+    .about a:hover{text-decoration:underline}
+    .composer{padding:12px}
+    .composer textarea{width:100%;min-height:70px;resize:vertical;border:1px solid var(--border);border-radius:3px;padding:8px;font:inherit;background:#fff;}
+    .composer .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;}
+    .btn{border:1px solid var(--btn-border);background:var(--btn);padding:6px 10px;border-radius:2px;font-weight:600;font-size:13px;cursor:pointer;}
+    .btn.primary{background:#1877f2;border-color:#1877f2;color:#fff}
+    .post{padding:12px;border-top:1px solid var(--border);}
+    .post .meta{color:var(--muted);font-size:12px;margin-bottom:6px}
+    .post .content{font-size:14px}
+    .post .actions{margin-top:8px;display:flex;gap:12px}
+    .post .link{color:var(--fb-link);text-decoration:none;font-weight:600;font-size:12px}
+    .post .link:hover{text-decoration:underline}
+    footer{max-width:980px;margin:24px auto 40px;padding:0 12px;color:var(--muted);font-size:12px;text-align:center;}
+    @media (max-width:800px){.container{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Emre Dinç</h1>
-    <p>Developer • Designer • Problem Solver</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="topbar">
+    <div class="logo">facebook</div>
+    <div class="search"><input type="search" placeholder="Search"></div>
+    <div class="top-actions">
+      <a href="#profile">Profile</a>
+      <a href="#friends">Friends</a>
+      <a href="#messages">Messages</a>
+    </div>
+  </div>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        Welcome to my personal webpage! I’m passionate about building clean, user-friendly applications and exploring new technologies. This space is where I share my work and ideas.
-      </p>
-    </section>
+  <div class="container" id="profile">
+    <aside class="card profile-card">
+      <div class="cover"></div>
+      <div class="profile-info">
+        <div class="avatar">ED</div>
+        <div>
+          <h1 class="name">Emre Dinç</h1>
+          <p class="subtitle">Senior Computer Science Student at Bilkent University, Undergraduate Researcher at BILSEN</p>
+        </div>
+      </div>
+      <nav class="menu">
+        <a href="#wall">Wall</a>
+        <a href="#info">Info</a>
+        <a href="#links">Links</a>
+      </nav>
+      <div class="about" id="info">
+        <h3>About</h3>
+        <ul>
+          <li><span class="label">Location</span><strong>Ankara, Türkiye</strong></li>
+          <li><span class="label">Education</span><strong>Bilkent University — B.S. in Computer Science, GPA 3.62</strong></li>
+          <li><span class="label">Scholarship</span><strong>Comprehensive Scholarship (Ranked 67th in 3M students)</strong></li>
+          <li><span class="label">Current Role</span><strong>Undergraduate Researcher at BILSEN</strong></li>
+          <li><span class="label">Experience</span>
+            <strong>Data Analyst at Fibabanka; NLP Engineer at DataBoss; AI Intern at Beynex; Computer Lab Assistant at Bilkent</strong>
+          </li>
+          <li><span class="label">Interests</span><strong>Artificial Intelligence, LLMs, Web Development, Algorithms</strong></li>
+          <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/emre-dinc-cs/" target="_blank">linkedin.com/in/emre-dinc-cs</a></li>
+          <li><span class="label">CV</span><a href="https://drive.google.com/file/d/13lbHEC_2ZLdad26lHHuXImvs6xGY5ktS/view" target="_blank">Google Drive Link</a></li>
+        </ul>
+      </div>
+    </aside>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>
-        Here are a few of my recent projects. Each one reflects my dedication to solving problems and creating meaningful digital experiences.
-      </p>
-      <ul>
-        <li><strong>Project One</strong> — A web app that simplifies task management.</li>
-        <li><strong>Project Two</strong> — A machine learning model for image classification.</li>
-        <li><strong>Project Three</strong> — A responsive portfolio website template.</li>
-      </ul>
-    </section>
+    <main class="card" id="wall">
+      <div class="composer">
+        <textarea placeholder="Write something to Emre..."></textarea>
+        <div class="actions">
+          <button class="btn">Add Photo</button>
+          <button class="btn primary">Post</button>
+        </div>
+      </div>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Feel free to reach out via email at <a href="mailto:you@example.com" style="color:#ffdd57;">you@example.com</a>.
-      </p>
-    </section>
-  </main>
+      <div class="post">
+        <div class="meta"><strong>Emre Dinç</strong> • now</div>
+        <div class="content">
+          Currently researching reasoning in LLMs to improve both accuracy and efficiency.
+        </div>
+        <div class="actions">
+          <a href="#" class="link">Like</a>
+          <a href="#" class="link">Comment</a>
+          <a href="#" class="link">Share</a>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="meta"><strong>Emre Dinç</strong> • recent</div>
+        <div class="content">
+          Built a bug report classification system combining Naive Bayes, Random Forest, SVM, fine-tuned BERT, and a reasoning LLM.
+        </div>
+        <div class="actions">
+          <a href="#" class="link">Like</a>
+          <a href="#" class="link">Comment</a>
+          <a href="#" class="link">Share</a>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="meta"><strong>Emre Dinç</strong> • past</div>
+        <div class="content">
+          Developed GRU-based models for Atrial Fibrillation detection using PhysioNet 2017 dataset.
+        </div>
+        <div class="actions">
+          <a href="#" class="link">Like</a>
+          <a href="#" class="link">Comment</a>
+          <a href="#" class="link">Share</a>
+        </div>
+      </div>
+    </main>
+  </div>
 
   <footer>
-    © 2025 Your Name — Built with HTML & CSS only
+    Classic-style profile • © <span id="year"></span> Emre Dinç
   </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
