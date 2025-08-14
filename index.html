@@ -1,173 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Emre Dinç — Profile</title>
-  <style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Emre Dinç</title>
+<meta name="color-scheme" content="light dark" />
+<style>
+  /* ====== Theme (Instagram-inspired, more vibrant) ====== */
+  :root{
+    --bg: #f8f8ff;
+    --card: #ffffff;
+    --text: #0f1115;
+    --muted:#6b7280;
+    --border:#e6e8ee;
+    --ring1:#feda77; /* richer gradient ring */
+    --ring2:#f58529;
+    --ring3:#dd2a7b;
+    --ring4:#8134af;
+    --ring5:#515bd4;
+    --accent:#ff3b6a;  /* primary accent for actions */
+    --accent-2:#1f7aec; /* secondary accent for buttons/links */
+    --chip:#eef2ff;
+    --chip-border:#dbe1ff;
+  }
+  @media (prefers-color-scheme: dark){
     :root{
-      --fb-blue:#3b5998;
-      --fb-blue-dark:#2d4373;
-      --fb-link:#2a6edb;
-      --border:#dfe1e6;
-      --text:#1c1e21;
-      --muted:#65676b;
-      --bg:#f0f2f5;
-      --card:#fff;
-      --btn:#e7f3ff;
-      --btn-border:#cfe3ff;
+      --bg:#0a0b0e; --card:#101214; --text:#e7e9ee;
+      --muted:#a1a1aa; --border:#1c1f26; --chip:#131826; --chip-border:#1f2940;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-    .topbar{
-      position:sticky; top:0; z-index:100;
-      background:var(--fb-blue);
-      color:#fff;
-      display:flex; align-items:center; gap:12px;
-      padding:8px 14px;
-      box-shadow:0 1px 0 rgba(0,0,0,.15);
-    }
-    .logo{font-weight:700;font-size:20px;text-transform:lowercase;}
-    .search{flex:1;display:flex;align-items:center;gap:8px;max-width:560px;background:#fff;color:#111;border-radius:2px;padding:6px 8px;}
-    .search input{border:0;outline:0;flex:1;font-size:14px;background:transparent;}
-    .top-actions{display:flex;gap:10px;align-items:center;}
-    .top-actions a{color:#fff;text-decoration:none;font-weight:600;font-size:13px;padding:6px 8px;border-radius:2px;}
-    .top-actions a:hover{background:var(--fb-blue-dark);}
-    .container{max-width:980px;margin:14px auto;padding:0 12px;display:grid;grid-template-columns:260px 1fr;gap:14px;}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:3px;overflow:hidden;}
-    .profile-card .cover{height:120px;background:linear-gradient(135deg,#5b7bd5,#4864b1);}
-    .profile-info{display:flex;gap:12px;padding:12px;border-top:1px solid var(--border);}
-    .avatar{width:72px;height:72px;border-radius:2px;background:#aac1ff;border:1px solid var(--border);flex:0 0 72px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:22px;}
-    .name{font-size:18px;font-weight:700;margin:0}
-    .subtitle{color:var(--muted);margin:2px 0 0;font-size:13px}
-    .menu{border-top:1px solid var(--border);display:flex;}
-    .menu a{flex:1;text-align:center;padding:10px 8px;text-decoration:none;color:var(--fb-blue);font-weight:600;font-size:13px;border-right:1px solid var(--border);}
-    .menu a:last-child{border-right:0}
-    .menu a:hover{background:#f6f7f9}
-    .about{padding:12px;border-top:1px solid var(--border)}
-    .about h3{margin:0 0 8px;font-size:14px}
-    .about ul{list-style:none;margin:0;padding:0}
-    .about li{padding:8px 0;border-top:1px solid var(--border);font-size:13px}
-    .about li:first-child{border-top:0}
-    .about .label{color:var(--muted);display:block;font-size:12px;margin-bottom:2px}
-    .about a{color:var(--fb-link);text-decoration:none}
-    .about a:hover{text-decoration:underline}
-    .composer{padding:12px}
-    .composer textarea{width:100%;min-height:70px;resize:vertical;border:1px solid var(--border);border-radius:3px;padding:8px;font:inherit;background:#fff;}
-    .composer .actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;}
-    .btn{border:1px solid var(--btn-border);background:var(--btn);padding:6px 10px;border-radius:2px;font-weight:600;font-size:13px;cursor:pointer;}
-    .btn.primary{background:#1877f2;border-color:#1877f2;color:#fff}
-    .post{padding:12px;border-top:1px solid var(--border);}
-    .post .meta{color:var(--muted);font-size:12px;margin-bottom:6px}
-    .post .content{font-size:14px}
-    .post .actions{margin-top:8px;display:flex;gap:12px}
-    .post .link{color:var(--fb-link);text-decoration:none;font-weight:600;font-size:12px}
-    .post .link:hover{text-decoration:underline}
-    footer{max-width:980px;margin:24px auto 40px;padding:0 12px;color:var(--muted);font-size:12px;text-align:center;}
-    @media (max-width:800px){.container{grid-template-columns:1fr}}
-  </style>
+  }
+
+  /* ====== Base ====== */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    /* Rounded/system font to better match Instagram’s feel */
+    font:14px/1.5 ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg); color:var(--text);
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  a{color:var(--accent-2); text-decoration:none}
+  img{display:block; max-width:100%}
+
+  /* ====== Top bar ====== */
+  .top{
+    position:sticky; top:0; z-index:50;
+    background:var(--card); border-bottom:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px;
+  }
+  .brand{font-weight:800; font-size:18px; letter-spacing:.2px}
+  .top .actions{display:flex; gap:14px}
+  .icon-btn{background:transparent; border:0; padding:4px; cursor:pointer; color:var(--text)}
+  .icon{width:22px; height:22px; display:inline-block}
+
+  /* ====== Layout ====== */
+  .wrap{max-width:980px; margin:0 auto; padding:14px}
+  .stack{display:grid; gap:14px}
+
+  /* ====== Profile header ====== */
+  .profile{
+    background:var(--card); border:1px solid var(--border); border-radius:18px;
+    padding:16px; display:grid; grid-template-columns:124px 1fr; gap:18px;
+  }
+  .avatar-wrap{
+    place-self:center;
+    width:112px; height:112px; border-radius:50%;
+    background:
+      conic-gradient(var(--ring1),var(--ring2),var(--ring3),var(--ring4),var(--ring5),var(--ring1));
+    padding:3px;
+  }
+  .avatar{
+    border-radius:50%; width:100%; height:100%; object-fit:cover;
+    background:linear-gradient(180deg,#e5e7eb,#c7cbd3);
+    border:3px solid var(--card);
+  }
+  .profile-main{display:grid; gap:10px}
+  .row{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .name{font-weight:900; font-size:20px; letter-spacing:.2px}
+  .badge{font-size:12px; color:var(--muted); border:1px solid var(--border); padding:4px 10px; border-radius:999px}
+  .cta{margin-left:auto; display:flex; gap:8px}
+  .btn{
+    border:1px solid var(--border); background:var(--card);
+    padding:8px 12px; border-radius:12px; font-weight:700; cursor:pointer; color:var(--text)
+  }
+  .btn.primary{
+    background:linear-gradient(135deg,var(--accent),#ff6ea8);
+    color:#fff; border:0;
+  }
+  .chips{display:flex; gap:8px; flex-wrap:wrap}
+  .chip{background:var(--chip); border:1px solid var(--chip-border); padding:6px 10px; border-radius:999px; font-size:12px; color:var(--muted)}
+
+  /* ====== About (Facebook-like list) ====== */
+  .card{background:var(--card); border:1px solid var(--border); border-radius:18px; overflow:hidden}
+  .card h2{font-size:14px; text-transform:uppercase; letter-spacing:.18em; color:var(--muted); padding:12px 14px; margin:0; border-bottom:1px solid var(--border)}
+  .list{list-style:none; margin:0; padding:0}
+  .list li{display:grid; grid-template-columns:140px 1fr; gap:10px; padding:12px 14px; border-top:1px solid var(--border)}
+  .list li:first-child{border-top:0}
+  .label{color:var(--muted); font-size:12px}
+  .value b{font-weight:800}
+
+  /* ====== Tabs ====== */
+  .tabs{
+    display:flex; gap:22px; justify-content:center;
+    margin-top:4px; border-top:1px solid var(--border);
+  }
+  .tab{
+    display:flex; align-items:center; gap:6px; padding:12px 0;
+    color:var(--muted); font-weight:800; text-transform:uppercase; letter-spacing:.2px; font-size:12px
+  }
+  .tab.active{color:var(--text); border-top:2px solid var(--text); margin-top:-1px}
+
+  /* ====== Grids ====== */
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:12px}
+  .tile{
+    background:linear-gradient(180deg,#eceff6,#d8ddea);
+    aspect-ratio:1/1; border-radius:12px; overflow:hidden; border:1px solid var(--border);
+    position:relative;
+  }
+  .tile img{width:100%; height:100%; object-fit:cover}
+
+  /* ====== Cards ====== */
+  .item{padding:14px}
+  .item b{font-weight:900}
+  .muted{color:var(--muted)}
+
+  /* ====== Bottom bar ====== */
+  .bottom{
+    position:sticky; bottom:0; z-index:40;
+    background:var(--card); border-top:1px solid var(--border);
+    display:flex; justify-content:space-around; padding:8px 8px env(safe-area-inset-bottom, 0);
+  }
+
+  /* ====== Responsive ====== */
+  @media (max-width:860px){ .profile{grid-template-columns:100px 1fr} }
+  @media (max-width:640px){
+    .wrap{padding:10px}
+    .grid{gap:6px}
+    .list li{grid-template-columns:120px 1fr}
+  }
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="logo">facebook</div>
-    <div class="search"><input type="search" placeholder="Search"></div>
-    <div class="top-actions">
-      <a href="#profile">Profile</a>
-      <a href="#friends">Friends</a>
-      <a href="#messages">Messages</a>
+  <!-- Top -->
+  <header class="top">
+    <div class="brand">emre.dinc</div>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Create">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Messages" id="msgTop">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M21 12a8.96 8.96 0 0 1-1.3 4.7c-.3.5-.5 1.1-.4 1.7l.3 1.9-1.9-.3c-.6-.1-1.2.1-1.7.4A9 9 0 1 1 21 12Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
     </div>
-  </div>
+  </header>
 
-  <div class="container" id="profile">
-    <aside class="card profile-card">
-      <div class="cover"></div>
-      <div class="profile-info">
-        <div class="avatar">ED</div>
-        <div>
-          <h1 class="name">Emre Dinç</h1>
-          <p class="subtitle">Senior Computer Science Student at Bilkent University, Undergraduate Researcher at BILSEN</p>
+  <main class="wrap stack">
+    <!-- Profile header -->
+    <section class="profile" aria-labelledby="name">
+      <div class="avatar-wrap">
+        <img class="avatar" src="profile-2.jpeg" alt="Profile picture of Emre Dinç" />
+      </div>
+      <div class="profile-main">
+        <div class="row">
+          <h1 id="name" class="name">Emre Dinç</h1>
+          <span class="badge">Senior CS @ Bilkent • BILSEN</span>
+          <div class="cta">
+            <!-- Message buttons -->
+            <button class="btn primary" id="gmailBtn">Message (Gmail)</button>
+            <button class="btn" id="mailtoBtn">Message (Email)</button>
+          </div>
+        </div>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">LLMs</span>
+          <span class="chip">Web Dev</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Algorithms</span>
         </div>
       </div>
-      <nav class="menu">
-        <a href="#wall">Wall</a>
-        <a href="#info">Info</a>
-        <a href="#links">Links</a>
-      </nav>
-      <div class="about" id="info">
-        <h3>About</h3>
-        <ul>
-          <li><span class="label">Location</span><strong>Ankara, Türkiye</strong></li>
-          <li><span class="label">Education</span><strong>Bilkent University — B.S. in Computer Science, GPA 3.62</strong></li>
-          <li><span class="label">Scholarship</span><strong>Comprehensive Scholarship (Ranked 67th in 3M students)</strong></li>
-          <li><span class="label">Current Role</span><strong>Undergraduate Researcher at BILSEN</strong></li>
-          <li><span class="label">Experience</span>
-            <strong>Data Analyst at Fibabanka; NLP Engineer at DataBoss; AI Intern at Beynex; Computer Lab Assistant at Bilkent</strong>
-          </li>
-          <li><span class="label">Interests</span><strong>Artificial Intelligence, LLMs, Web Development, Algorithms</strong></li>
-          <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/emre-dinc-cs/" target="_blank">linkedin.com/in/emre-dinc-cs</a></li>
-          <li><span class="label">CV</span><a href="https://drive.google.com/file/d/13lbHEC_2ZLdad26lHHuXImvs6xGY5ktS/view" target="_blank">Google Drive Link</a></li>
-        </ul>
-      </div>
-    </aside>
+    </section>
 
-    <main class="card" id="wall">
-      <div class="composer">
-        <textarea placeholder="Write something to Emre..."></textarea>
-        <div class="actions">
-          <button class="btn">Add Photo</button>
-          <button class="btn primary">Post</button>
-        </div>
-      </div>
+    <!-- About (Facebook-like list; includes CV link) -->
+    <section class="card" aria-label="About">
+      <h2>About</h2>
+      <ul class="list">
+        <li><span class="label">Name</span><span class="value"><b>Emre Dinç</b></span></li>
+        <li><span class="label">Headline</span><span class="value">Senior Computer Science Student at Bilkent University, Undergraduate Researcher at BILSEN</span></li>
+        <li><span class="label">Education</span><span class="value">Bilkent University — B.S. in Computer Science (GPA 3.62)</span></li>
+        <li><span class="label">Scholarship</span><span class="value">Comprehensive Scholarship; ranked 67th among ~3M in 2021 exam</span></li>
+        <li><span class="label">Location</span><span class="value">Ankara, Türkiye</span></li>
+        <li><span class="label">LinkedIn</span><span class="value"><a href="https://www.linkedin.com/in/emre-dinc-cs/" target="_blank" rel="noopener">linkedin.com/in/emre-dinc-cs</a></span></li>
+        <li><span class="label">CV</span><span class="value"><a href="https://drive.google.com/file/d/13lbHEC_2ZLdad26lHHuXImvs6xGY5ktS/view" target="_blank" rel="noopener">Google Drive link</a></span></li>
+      </ul>
+    </section>
 
-      <div class="post">
-        <div class="meta"><strong>Emre Dinç</strong> • now</div>
-        <div class="content">
-          Currently researching reasoning in LLMs to improve both accuracy and efficiency.
-        </div>
-        <div class="actions">
-          <a href="#" class="link">Like</a>
-          <a href="#" class="link">Comment</a>
-          <a href="#" class="link">Share</a>
-        </div>
-      </div>
+    <!-- Tabs (Projects / Articles) -->
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab active" href="#projects">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        Projects
+      </a>
+      <a class="tab" href="#articles">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M7 9h10M7 12h10M7 15h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Articles
+      </a>
+    </nav>
 
-      <div class="post">
-        <div class="meta"><strong>Emre Dinç</strong> • recent</div>
-        <div class="content">
-          Built a bug report classification system combining Naive Bayes, Random Forest, SVM, fine-tuned BERT, and a reasoning LLM.
+    <!-- Projects List -->
+    <section id="projects" class="card" aria-label="Projects">
+    <h2>Projects</h2>
+    <div class="item">
+        <b>Judge the Votes — Bug Report Classification (BILSEN)</b>
+        <div class="muted">
+        Naive Bayes, Random Forest, SVM, fine-tuned BERT + reasoning LLM to reach SoTA and explainability.
         </div>
-        <div class="actions">
-          <a href="#" class="link">Like</a>
-          <a href="#" class="link">Comment</a>
-          <a href="#" class="link">Share</a>
+    </div>
+    <div class="item">
+        <b>AF Detection with GRU (PhysioNet 2017)</b>
+        <div class="muted">
+        Sequential modeling on long ECG sequences using PyTorch GRUs; detects AF and other rhythms.
         </div>
-      </div>
+    </div>
+    <div class="item">
+        <b>Domain RAG Chatbot (MoE docs)</b>
+        <div class="muted">
+        Hybrid search + RAG to answer domain-specific questions with minimized hallucinations (DataBoss internship).
+        </div>
+    </div>
+    </section>
 
-      <div class="post">
-        <div class="meta"><strong>Emre Dinç</strong> • past</div>
-        <div class="content">
-          Developed GRU-based models for Atrial Fibrillation detection using PhysioNet 2017 dataset.
-        </div>
-        <div class="actions">
-          <a href="#" class="link">Like</a>
-          <a href="#" class="link">Comment</a>
-          <a href="#" class="link">Share</a>
-        </div>
-      </div>
-    </main>
-  </div>
 
-  <footer>
-    Classic-style profile • © <span id="year"></span> Emre Dinç
-  </footer>
+    <!-- Articles Panel (to be populated later) -->
+    <section id="articles" class="card" aria-label="Articles">
+      <h2>Articles</h2>
+      <div class="item muted">
+        No articles yet. Add your posts, Medium links, or PDFs here later.
+      </div>
+    </section>
+  </main>
+
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    /* ====== Configure your email ONCE here ====== */
+    const EMAIL = "yourname@gmail.com"; // <-- change to your Gmail (e.g., emreXXXXX@gmail.com)
+
+    // Buttons: Gmail compose (web) and default mail client
+    const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}`;
+    const mailtoURL = `mailto:${EMAIL}`;
+
+    document.getElementById('gmailBtn').addEventListener('click', () => window.open(gmailURL, '_blank', 'noopener'));
+    document.getElementById('mailtoBtn').addEventListener('click', () => window.location.href = mailtoURL);
+    document.getElementById('msgTop').addEventListener('click', () => window.open(gmailURL, '_blank', 'noopener'));
   </script>
 </body>
 </html>
