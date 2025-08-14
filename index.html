@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Personal Webpage</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #2b5876, #4e4376);
+      color: #fff;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav a:hover {
+      border-color: #ffdd57;
+    }
+    main {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+    }
+    section {
+      padding: 2rem;
+    }
+    section h2 {
+      margin-top: 0;
+      color: #ffdd57;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Name</h1>
+    <p>Developer • Designer • Problem Solver</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Welcome to my personal webpage! I’m passionate about building clean, user-friendly applications and exploring new technologies. This space is where I share my work and ideas.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>
+        Here are a few of my recent projects. Each one reflects my dedication to solving problems and creating meaningful digital experiences.
+      </p>
+      <ul>
+        <li><strong>Project One</strong> — A web app that simplifies task management.</li>
+        <li><strong>Project Two</strong> — A machine learning model for image classification.</li>
+        <li><strong>Project Three</strong> — A responsive portfolio website template.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Feel free to reach out via email at <a href="mailto:you@example.com" style="color:#ffdd57;">you@example.com</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Your Name — Built with HTML & CSS only
+  </footer>
+</body>
+</html>
